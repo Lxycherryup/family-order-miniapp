@@ -657,7 +657,7 @@ Expected: 提交成功。
 - Modify: `server/internal/cmd/cmd.go`
 - Create: `server/test/error_code_test.go`
 
-- [ ] **Step 1: 编写错误码测试**
+- [x] **Step 1: 编写错误码测试**
 
 创建 `server/test/error_code_test.go`：
 
@@ -698,7 +698,7 @@ func TestErrorCodeValues(t *testing.T) {
 }
 ```
 
-- [ ] **Step 2: 运行测试确认失败**
+- [x] **Step 2: 运行测试确认失败**
 
 Run:
 
@@ -709,7 +709,7 @@ go test ./test -run TestErrorCodeValues -v
 
 Expected: 因常量不存在而失败。
 
-- [ ] **Step 3: 实现错误码和响应结构**
+- [x] **Step 3: 实现错误码和响应结构**
 
 创建 `server/internal/consts/error_code.go`：
 
@@ -757,7 +757,7 @@ func NewErrorResponse(code int, msg string) Response {
 }
 ```
 
-- [ ] **Step 4: 实现请求日志中间件**
+- [x] **Step 4: 实现请求日志中间件**
 
 创建 `server/internal/middleware/request_log.go`：
 
@@ -780,7 +780,7 @@ func RequestLog(r *ghttp.Request) {
 }
 ```
 
-- [ ] **Step 5: 接入中间件**
+- [x] **Step 5: 接入中间件**
 
 修改 `server/internal/cmd/cmd.go`，在路由组内增加：
 
@@ -794,7 +794,7 @@ group.Middleware(middleware.RequestLog)
 "family-order/server/internal/middleware"
 ```
 
-- [ ] **Step 6: 运行测试**
+- [x] **Step 6: 运行测试**
 
 Run:
 
@@ -806,7 +806,7 @@ go test ./...
 
 Expected: 测试通过。
 
-- [ ] **Step 7: 提交统一响应基础**
+- [x] **Step 7: 提交统一响应基础**
 
 Run:
 

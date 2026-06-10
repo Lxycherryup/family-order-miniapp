@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"family-order/server/internal/controller"
+	"family-order/server/internal/middleware"
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"
@@ -19,6 +20,7 @@ var Main = gcmd.Command{
 		s := g.Server()
 		s.SetAddr(":8000")
 		s.Group("/", func(group *ghttp.RouterGroup) {
+			group.Middleware(middleware.RequestLog)
 			health := controller.NewHealth()
 			group.GET("/health", health.Handler)
 		})
