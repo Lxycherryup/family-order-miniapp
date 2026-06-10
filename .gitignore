@@ -1,0 +1,19 @@
+.env
+.DS_Store
+.conda-fund-monitor/
+config/funds.json
+data/
+logs/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# 家庭点餐系统
+server/manifest/config/config.yaml
+server/tmp/
+server/log/
+admin-web/node_modules/
+admin-web/dist/
+miniapp/miniprogram_npm/
+deploy/**/*.local.yaml
