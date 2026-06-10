@@ -1463,7 +1463,7 @@ Expected: 提交成功。
 - Create: `deploy/nginx/family-order.conf`
 - Create: `.env.example`
 
-- [ ] **Step 1: 编写后端 Dockerfile**
+- [x] **Step 1: 编写后端 Dockerfile**
 
 创建 `server/manifest/docker/Dockerfile`：
 
@@ -1485,7 +1485,7 @@ EXPOSE 8000
 CMD ["/app/family-order-server"]
 ```
 
-- [ ] **Step 2: 编写 Compose 配置**
+- [x] **Step 2: 编写 Compose 配置**
 
 创建 `deploy/compose/docker-compose.yaml`：
 
@@ -1528,7 +1528,7 @@ volumes:
   postgres_data:
 ```
 
-- [ ] **Step 3: 编写 Nginx 配置**
+- [x] **Step 3: 编写 Nginx 配置**
 
 创建 `deploy/nginx/family-order.conf`：
 
@@ -1573,7 +1573,7 @@ docker compose -f deploy/compose/docker-compose.yaml build backend
 
 Expected: 后端镜像构建成功。
 
-- [ ] **Step 6: 提交部署配置**
+- [x] **Step 6: 提交部署配置**
 
 Run:
 
