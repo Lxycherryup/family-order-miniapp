@@ -2,7 +2,11 @@ module family-order/server
 
 go 1.23.0
 
-require github.com/gogf/gf/v2 v2.10.2
+require (
+	github.com/gogf/gf/v2 v2.10.2
+	github.com/golang-jwt/jwt/v5 v5.3.1
+	golang.org/x/crypto v0.38.0
+)
 
 require (
 	github.com/BurntSushi/toml v1.5.0 // indirect

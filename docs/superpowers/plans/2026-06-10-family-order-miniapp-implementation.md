@@ -829,7 +829,7 @@ Expected: 提交成功。
 - Create: `server/internal/controller/admin/auth.go`
 - Create: `server/test/auth_test.go`
 
-- [ ] **Step 1: 安装依赖**
+- [x] **Step 1: 安装依赖**
 
 Run:
 
@@ -841,7 +841,7 @@ go get golang.org/x/crypto/bcrypt@latest
 
 Expected: JWT 和 bcrypt 依赖写入 `go.mod`。
 
-- [ ] **Step 2: 编写 JWT 测试**
+- [x] **Step 2: 编写 JWT 测试**
 
 创建 `server/test/auth_test.go`：
 
@@ -876,7 +876,7 @@ func TestJWTGenerateAndParse(t *testing.T) {
 }
 ```
 
-- [ ] **Step 3: 运行测试确认失败**
+- [x] **Step 3: 运行测试确认失败**
 
 Run:
 
@@ -887,7 +887,7 @@ go test ./test -run TestJWTGenerateAndParse -v
 
 Expected: 因 JWT 逻辑不存在而失败。
 
-- [ ] **Step 4: 实现 JWT 逻辑**
+- [x] **Step 4: 实现 JWT 逻辑**
 
 创建 `server/internal/logic/auth/jwt.go`：
 
@@ -946,7 +946,7 @@ func ParseToken(tokenString string, secret string) (*TokenClaims, error) {
 }
 ```
 
-- [ ] **Step 5: 实现管理员登录接口**
+- [x] **Step 5: 实现管理员登录接口**
 
 实现以下文件：
 
@@ -962,7 +962,7 @@ func ParseToken(tokenString string, secret string) (*TokenClaims, error) {
 return nil, fmt.Errorf("管理员账号或密码错误")
 ```
 
-- [ ] **Step 6: 运行测试**
+- [x] **Step 6: 运行测试**
 
 Run:
 
@@ -974,7 +974,7 @@ go test ./...
 
 Expected: 测试通过。
 
-- [ ] **Step 7: 提交管理员认证**
+- [x] **Step 7: 提交管理员认证**
 
 Run:
 

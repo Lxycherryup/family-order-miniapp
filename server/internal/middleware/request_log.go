@@ -23,7 +23,10 @@ func RequestLog(r *ghttp.Request) {
 	if err := r.GetError(); err != nil {
 		errMsg = err.Error()
 	}
-	userID := r.GetHeader("X-User-ID", "0")
+	userID := r.GetCtxVar(CtxKeySubjectID).String()
+	if userID == "" {
+		userID = r.GetHeader("X-User-ID", "0")
+	}
 	g.Log().Infof(r.Context(), "请求完成 request_id=%s user_id=%s method=%s path=%s status=%d cost=%s error=%s",
 		requestID, userID, r.Method, r.URL.Path, r.Response.Status, time.Since(start), errMsg)
 }
