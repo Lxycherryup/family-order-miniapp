@@ -1317,7 +1317,7 @@ Expected: 提交成功。
 - Create: `server/internal/controller/miniapp/order.go`
 - Create: `server/test/order_test.go`
 
-- [ ] **Step 1: 编写订单状态流转测试**
+- [x] **Step 1: 编写订单状态流转测试**
 
 创建 `server/test/order_test.go`：
 
@@ -1345,7 +1345,7 @@ func TestCanChangeStatus(t *testing.T) {
 }
 ```
 
-- [ ] **Step 2: 运行测试确认失败**
+- [x] **Step 2: 运行测试确认失败**
 
 Run:
 
@@ -1356,7 +1356,7 @@ go test ./test -run TestCanChangeStatus -v
 
 Expected: 因订单逻辑不存在而失败。
 
-- [ ] **Step 3: 实现状态流转函数**
+- [x] **Step 3: 实现状态流转函数**
 
 创建 `server/internal/logic/order/order.go`：
 
@@ -1378,7 +1378,7 @@ func CanChangeStatus(from int, to int) bool {
 }
 ```
 
-- [ ] **Step 4: 实现下单接口**
+- [x] **Step 4: 实现下单接口**
 
 实现：
 
@@ -1397,7 +1397,7 @@ POST /api/miniapp/orders
 - `order_items` 保存菜品名称、图片、单价快照。
 - 订单号格式使用 `yyyyMMddHHmmss` 加随机后缀，保证唯一。
 
-- [ ] **Step 5: 实现我的订单接口**
+- [x] **Step 5: 实现我的订单接口**
 
 实现：
 
@@ -1413,7 +1413,7 @@ POST /api/miniapp/orders/{id}/cancel
 - 订单详情包含订单主表和明细。
 - 只能取消自己的待处理订单。
 
-- [ ] **Step 6: 实现管理端订单接口**
+- [x] **Step 6: 实现管理端订单接口**
 
 实现：
 
@@ -1430,7 +1430,7 @@ PUT /api/admin/orders/{id}/status
 - 修改状态前调用 `CanChangeStatus`。
 - 状态冲突返回 `40901`。
 
-- [ ] **Step 7: 运行测试**
+- [x] **Step 7: 运行测试**
 
 Run:
 
@@ -1442,7 +1442,7 @@ go test ./...
 
 Expected: 测试通过。
 
-- [ ] **Step 8: 提交订单模块**
+- [x] **Step 8: 提交订单模块**
 
 Run:
 
