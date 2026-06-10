@@ -1171,7 +1171,7 @@ Expected: 提交成功。
 - Create: `server/internal/controller/miniapp/menu.go`
 - Create: `server/test/menu_test.go`
 
-- [ ] **Step 1: 编写菜单排序测试**
+- [x] **Step 1: 编写菜单排序测试**
 
 创建 `server/test/menu_test.go`：
 
@@ -1195,7 +1195,7 @@ func TestValidateDishQuantity(t *testing.T) {
 }
 ```
 
-- [ ] **Step 2: 运行测试确认失败**
+- [x] **Step 2: 运行测试确认失败**
 
 Run:
 
@@ -1206,7 +1206,7 @@ go test ./test -run TestValidateDishQuantity -v
 
 Expected: 因校验函数不存在而失败。
 
-- [ ] **Step 3: 实现菜品基础校验**
+- [x] **Step 3: 实现菜品基础校验**
 
 创建 `server/internal/logic/menu/dish.go`：
 
@@ -1227,7 +1227,7 @@ func ValidateDishQuantity(quantity int) error {
 }
 ```
 
-- [ ] **Step 4: 实现管理端分类接口**
+- [x] **Step 4: 实现管理端分类接口**
 
 实现以下接口：
 
@@ -1246,7 +1246,7 @@ PUT /api/admin/categories/{id}/status
 - 分类下存在菜品时不允许删除。
 - 删除失败返回 `40901`。
 
-- [ ] **Step 5: 实现管理端菜品接口**
+- [x] **Step 5: 实现管理端菜品接口**
 
 实现以下接口：
 
@@ -1266,7 +1266,7 @@ PUT /api/admin/dishes/{id}/status
 - 分类必须存在且启用。
 - 删除优先做下架处理，不物理删除历史数据。
 
-- [ ] **Step 6: 实现小程序菜单接口**
+- [x] **Step 6: 实现小程序菜单接口**
 
 实现以下接口：
 
@@ -1282,7 +1282,7 @@ GET /api/miniapp/menu/dishes/{id}
 - 只返回启用分类和上架菜品。
 - 按 `sort ASC, id ASC` 排序。
 
-- [ ] **Step 7: 运行测试**
+- [x] **Step 7: 运行测试**
 
 Run:
 
@@ -1294,7 +1294,7 @@ go test ./...
 
 Expected: 测试通过。
 
-- [ ] **Step 8: 提交菜单接口**
+- [x] **Step 8: 提交菜单接口**
 
 Run:
 

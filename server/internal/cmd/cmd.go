@@ -35,10 +35,36 @@ var Main = gcmd.Command{
 					protectedGroup.GET("/profile", adminAuth.Profile)
 				})
 			})
+			group.Group("/api/admin", func(adminGroup *ghttp.RouterGroup) {
+				adminGroup.Middleware(middleware.AdminAuth)
+
+				category := admincontroller.NewCategory()
+				adminGroup.GET("/categories", category.List)
+				adminGroup.POST("/categories", category.Create)
+				adminGroup.PUT("/categories/{id}", category.Update)
+				adminGroup.DELETE("/categories/{id}", category.Delete)
+				adminGroup.PUT("/categories/{id}/status", category.UpdateStatus)
+
+				dish := admincontroller.NewDish()
+				adminGroup.GET("/dishes", dish.List)
+				adminGroup.POST("/dishes", dish.Create)
+				adminGroup.GET("/dishes/{id}", dish.Detail)
+				adminGroup.PUT("/dishes/{id}", dish.Update)
+				adminGroup.DELETE("/dishes/{id}", dish.Delete)
+				adminGroup.PUT("/dishes/{id}/status", dish.UpdateStatus)
+			})
 
 			miniappAuth := miniappcontroller.NewAuth()
 			group.Group("/api/miniapp/auth", func(authGroup *ghttp.RouterGroup) {
 				authGroup.POST("/login", miniappAuth.Login)
+			})
+			group.Group("/api/miniapp/menu", func(menuGroup *ghttp.RouterGroup) {
+				menuGroup.Middleware(middleware.MiniappAuth)
+
+				menu := miniappcontroller.NewMenu()
+				menuGroup.GET("/categories", menu.Categories)
+				menuGroup.GET("/dishes", menu.Dishes)
+				menuGroup.GET("/dishes/{id}", menu.DishDetail)
 			})
 		})
 		s.Run()
