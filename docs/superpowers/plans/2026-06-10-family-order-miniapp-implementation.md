@@ -412,7 +412,7 @@ Expected: 提交成功。
 - Create: `server/internal/consts/status.go`
 - Create: `server/test/migration_test.go`
 
-- [ ] **Step 1: 编写迁移文件测试**
+- [x] **Step 1: 编写迁移文件测试**
 
 创建 `server/test/migration_test.go`：
 
@@ -449,7 +449,7 @@ func TestInitMigrationContainsCoreTables(t *testing.T) {
 }
 ```
 
-- [ ] **Step 2: 运行测试确认失败**
+- [x] **Step 2: 运行测试确认失败**
 
 Run:
 
@@ -460,7 +460,7 @@ go test ./test -run TestInitMigrationContainsCoreTables -v
 
 Expected: 因迁移文件不存在而失败。
 
-- [ ] **Step 3: 编写初始化 SQL**
+- [x] **Step 3: 编写初始化 SQL**
 
 创建 `server/manifest/deploy/migrations/001_init.sql`，包含 7 张表、索引和中文注释：
 
@@ -565,7 +565,7 @@ CREATE TABLE IF NOT EXISTS system_configs (
 COMMENT ON TABLE system_configs IS '系统配置表';
 ```
 
-- [ ] **Step 4: 增加状态常量**
+- [x] **Step 4: 增加状态常量**
 
 创建 `server/internal/consts/status.go`：
 
@@ -598,7 +598,7 @@ const (
 )
 ```
 
-- [ ] **Step 5: 增加配置示例**
+- [x] **Step 5: 增加配置示例**
 
 创建 `server/manifest/config/config.example.yaml`：
 
@@ -622,7 +622,7 @@ wechat:
   appSecret: "your-miniapp-app-secret"
 ```
 
-- [ ] **Step 6: 运行测试**
+- [x] **Step 6: 运行测试**
 
 Run:
 
@@ -634,7 +634,7 @@ go test ./...
 
 Expected: 测试通过。
 
-- [ ] **Step 7: 提交数据库设计**
+- [x] **Step 7: 提交数据库设计**
 
 Run:
 

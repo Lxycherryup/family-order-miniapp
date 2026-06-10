@@ -2,3 +2,16 @@ server:
   address: ":8000"
   openapiPath: "/api.json"
   swaggerPath: "/swagger"
+
+database:
+  default:
+    link: "pgsql:host=127.0.0.1 port=5432 user=family_order password=family_order dbname=family_order sslmode=disable"
+
+jwt:
+  secret: "please-change-me"
+  miniappExpireHours: 168
+  adminExpireHours: 24
+
+wechat:
+  appId: "your-miniapp-app-id"
+  appSecret: "your-miniapp-app-secret"
