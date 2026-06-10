@@ -154,7 +154,7 @@ deploy/
 - Create: `docs/family-order/README.md`
 - Modify: `.gitignore`
 
-- [ ] **Step 1: 创建目录**
+- [x] **Step 1: 创建目录**
 
 Run:
 
@@ -165,7 +165,7 @@ touch server/.gitkeep admin-web/.gitkeep miniapp/.gitkeep deploy/.gitkeep
 
 Expected: 四个应用目录创建成功。
 
-- [ ] **Step 2: 更新 `.gitignore`**
+- [x] **Step 2: 更新 `.gitignore`**
 
 在 `.gitignore` 增加以下内容：
 
@@ -180,7 +180,7 @@ miniapp/miniprogram_npm/
 deploy/**/*.local.yaml
 ```
 
-- [ ] **Step 3: 写项目说明**
+- [x] **Step 3: 写项目说明**
 
 创建 `docs/family-order/README.md`：
 
@@ -210,7 +210,7 @@ deploy/**/*.local.yaml
 第一版不支持支付、配送、打印机、多门店、库存、优惠券和商业报表。
 ```
 
-- [ ] **Step 4: 提交骨架**
+- [x] **Step 4: 提交骨架**
 
 Run:
 
@@ -233,7 +233,7 @@ Expected: 提交成功，只包含骨架和说明文件。
 - Create: `server/manifest/config/config.example.yaml`
 - Create: `server/test/health_test.go`
 
-- [ ] **Step 1: 初始化 Go 模块**
+- [x] **Step 1: 初始化 Go 模块**
 
 Run:
 
@@ -245,7 +245,7 @@ go get github.com/gogf/gf/v2@latest
 
 Expected: `server/go.mod` 和 `server/go.sum` 生成成功，`go.mod` 中 Go 版本为本机 `go env GOVERSION` 对应主版本，不手动升级。
 
-- [ ] **Step 2: 编写健康检查测试**
+- [x] **Step 2: 编写健康检查测试**
 
 创建 `server/test/health_test.go`：
 
@@ -282,7 +282,7 @@ func TestHealthHandler(t *testing.T) {
 }
 ```
 
-- [ ] **Step 3: 运行测试并确认失败或编译提示**
+- [x] **Step 3: 运行测试并确认失败或编译提示**
 
 Run:
 
@@ -293,7 +293,7 @@ go test ./...
 
 Expected: 如果缺少导入或初始化代码，测试失败；记录失败信息后进入实现。
 
-- [ ] **Step 4: 实现后端入口**
+- [x] **Step 4: 实现后端入口**
 
 `server/main.go`：
 
@@ -379,7 +379,7 @@ func (c *Health) Health(ctx context.Context, req *HealthReq) (res *HealthRes, er
 }
 ```
 
-- [ ] **Step 5: 运行测试**
+- [x] **Step 5: 运行测试**
 
 Run:
 
@@ -391,7 +391,7 @@ go test ./...
 
 Expected: `go test ./...` 通过。
 
-- [ ] **Step 6: 提交后端骨架**
+- [x] **Step 6: 提交后端骨架**
 
 Run:
 
