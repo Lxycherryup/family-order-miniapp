@@ -1553,7 +1553,7 @@ server {
 }
 ```
 
-- [ ] **Step 4: 验证 Compose 配置**
+- [x] **Step 4: 验证 Compose 配置**
 
 Run:
 
@@ -1563,7 +1563,7 @@ docker compose -f deploy/compose/docker-compose.yaml config
 
 Expected: 输出解析后的 Compose 配置，无错误。
 
-- [ ] **Step 5: 构建后端镜像**
+- [x] **Step 5: 构建后端镜像**
 
 Run:
 
