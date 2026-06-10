@@ -5,6 +5,7 @@ import (
 
 	"family-order/server/internal/controller"
 	admincontroller "family-order/server/internal/controller/admin"
+	miniappcontroller "family-order/server/internal/controller/miniapp"
 	"family-order/server/internal/middleware"
 
 	"github.com/gogf/gf/v2/frame/g"
@@ -33,6 +34,11 @@ var Main = gcmd.Command{
 					protectedGroup.POST("/logout", adminAuth.Logout)
 					protectedGroup.GET("/profile", adminAuth.Profile)
 				})
+			})
+
+			miniappAuth := miniappcontroller.NewAuth()
+			group.Group("/api/miniapp/auth", func(authGroup *ghttp.RouterGroup) {
+				authGroup.POST("/login", miniappAuth.Login)
 			})
 		})
 		s.Run()

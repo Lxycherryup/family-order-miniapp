@@ -997,7 +997,7 @@ Expected: 提交成功。
 - Modify: `server/internal/middleware/auth.go`
 - Create: `server/test/wechat_auth_test.go`
 
-- [ ] **Step 1: 编写微信客户端接口测试**
+- [x] **Step 1: 编写微信客户端接口测试**
 
 创建 `server/test/wechat_auth_test.go`：
 
@@ -1031,7 +1031,7 @@ func TestWechatClientInterface(t *testing.T) {
 }
 ```
 
-- [ ] **Step 2: 运行测试确认失败**
+- [x] **Step 2: 运行测试确认失败**
 
 Run:
 
@@ -1042,7 +1042,7 @@ go test ./test -run TestWechatClientInterface -v
 
 Expected: 因 `WechatSession` 未定义而失败。
 
-- [ ] **Step 3: 实现微信客户端接口**
+- [x] **Step 3: 实现微信客户端接口**
 
 创建 `server/internal/logic/auth/wechat.go`：
 
@@ -1104,7 +1104,7 @@ func (c *HTTPWechatClient) Code2Session(ctx context.Context, code string) (*Wech
 }
 ```
 
-- [ ] **Step 4: 实现用户白名单逻辑**
+- [x] **Step 4: 实现用户白名单逻辑**
 
 在 `server/internal/logic/user/user.go` 实现：
 
@@ -1114,7 +1114,7 @@ func (c *HTTPWechatClient) Code2Session(ctx context.Context, code string) (*Wech
 - 判断 `is_whitelist` 和 `status`。
 - 非白名单用户允许登录，但返回 `is_whitelist=false`。
 
-- [ ] **Step 5: 实现小程序登录接口**
+- [x] **Step 5: 实现小程序登录接口**
 
 实现：
 
@@ -1133,7 +1133,7 @@ POST /api/miniapp/auth/login
 
 白名单用户返回可访问点餐接口的 JWT；非白名单用户返回空 Token 或受限 Token，并在访问菜单和下单接口时由中间件拦截。
 
-- [ ] **Step 6: 运行测试**
+- [x] **Step 6: 运行测试**
 
 Run:
 
@@ -1145,7 +1145,7 @@ go test ./...
 
 Expected: 测试通过。
 
-- [ ] **Step 7: 提交微信登录**
+- [x] **Step 7: 提交微信登录**
 
 Run:
 

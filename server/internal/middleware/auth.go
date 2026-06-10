@@ -19,17 +19,27 @@ const (
 
 // AdminAuth 校验管理端 JWT。
 func AdminAuth(r *ghttp.Request) {
+	authByRole(r, "admin", consts.CodeUnauthorized, "未登录或Token失效")
+}
+
+// MiniappAuth 校验小程序白名单用户 JWT。
+func MiniappAuth(r *ghttp.Request) {
+	authByRole(r, "miniapp", consts.CodeForbidden, "当前微信用户未加入点餐白名单")
+}
+
+// authByRole 按角色校验 JWT 并写入请求上下文。
+func authByRole(r *ghttp.Request, role string, errorCode int, errorMsg string) {
 	tokenString := extractBearerToken(r.GetHeader("Authorization"))
 	if tokenString == "" {
-		WriteError(r, consts.CodeUnauthorized, "未登录或Token失效")
+		WriteError(r, errorCode, errorMsg)
 		r.ExitAll()
 		return
 	}
 
 	secret := g.Cfg().MustGet(r.Context(), "jwt.secret").String()
 	claims, err := authlogic.ParseToken(tokenString, secret)
-	if err != nil || claims.Role != "admin" {
-		WriteError(r, consts.CodeUnauthorized, "未登录或Token失效")
+	if err != nil || claims.Role != role {
+		WriteError(r, errorCode, errorMsg)
 		r.ExitAll()
 		return
 	}
