@@ -2,6 +2,8 @@ package auth
 
 import (
 	"context"
+	"database/sql"
+	"errors"
 	"fmt"
 	"time"
 
@@ -44,6 +46,9 @@ func LoginAdmin(ctx context.Context, in AdminLoginInput) (*AdminLoginOutput, err
 
 	var admin adminUser
 	if err := g.DB().Model("admin_users").Ctx(ctx).Where("username", in.Username).Scan(&admin); err != nil {
+		if errors.Is(err, sql.ErrNoRows) {
+			return nil, fmt.Errorf("管理员账号或密码错误")
+		}
 		return nil, fmt.Errorf("查询管理员失败: %w", err)
 	}
 	if admin.ID == 0 {
