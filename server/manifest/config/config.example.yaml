@@ -13,7 +13,7 @@ jwt:
   adminExpireHours: 24
 
 wechat:
-  mockEnabled: true
+  mockEnabled: false
   mockOpenID: "dev-family-user"
   appId: "your-miniapp-app-id"
   appSecret: "your-miniapp-app-secret"
