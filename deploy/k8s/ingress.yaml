@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: family-order-ingress
+  namespace: family-order
+spec:
+  tls:
+    - hosts:
+        - api.yourdomain.com
+        - admin.yourdomain.com
+      secretName: family-order-tls
+  rules:
+    - host: api.yourdomain.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: family-order-backend
+                port:
+                  number: 8000
+    - host: admin.yourdomain.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: family-order-admin-web
+                port:
+                  number: 80
