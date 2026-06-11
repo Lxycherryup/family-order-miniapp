@@ -1,0 +1,56 @@
+.empty {
+  padding: 80rpx 0;
+  color: #7b8794;
+  text-align: center;
+}
+
+.order-card {
+  margin-bottom: 18rpx;
+  padding: 24rpx;
+}
+
+.order-top,
+.order-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20rpx;
+}
+
+.order-no {
+  flex: 1;
+  overflow: hidden;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.status {
+  flex: none;
+  color: #2c6e49;
+  font-weight: 700;
+}
+
+.order-meta {
+  margin-top: 12rpx;
+  color: #7b8794;
+  font-size: 24rpx;
+}
+
+.remark {
+  flex: 1;
+  overflow: hidden;
+  color: #52606d;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.amount {
+  color: #d9480f;
+  font-size: 34rpx;
+  font-weight: 700;
+}
+
+.order-bottom {
+  margin-top: 18rpx;
+}

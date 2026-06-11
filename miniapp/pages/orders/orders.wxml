@@ -1,0 +1,14 @@
+<view class="page orders-page">
+  <view wx:if="{{orders.length === 0 && !loading}}" class="empty card">暂无订单</view>
+  <view wx:for="{{orders}}" wx:key="id" class="order-card card" data-id="{{item.id}}" bindtap="goDetail">
+    <view class="order-top">
+      <view class="order-no">{{item.order_no}}</view>
+      <view class="status">{{item.status_text}}</view>
+    </view>
+    <view class="order-meta">创建时间：{{item.created_at}}</view>
+    <view class="order-bottom">
+      <view class="remark">{{item.remark || '无备注'}}</view>
+      <view class="amount">¥{{item.amount_text}}</view>
+    </view>
+  </view>
+</view>

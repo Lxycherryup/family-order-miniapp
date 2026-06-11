@@ -1,0 +1,76 @@
+.empty {
+  padding: 80rpx 0;
+  color: #7b8794;
+  text-align: center;
+}
+
+.summary {
+  padding: 24rpx;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 24rpx;
+  padding: 14rpx 0;
+  border-bottom: 1rpx solid #edf1ed;
+  color: #52606d;
+}
+
+.summary-row:last-child {
+  border-bottom: 0;
+}
+
+.summary-row text:last-child {
+  max-width: 420rpx;
+  color: #1f2933;
+  text-align: right;
+  word-break: break-all;
+}
+
+.status {
+  color: #2c6e49 !important;
+  font-weight: 700;
+}
+
+.amount {
+  color: #d9480f !important;
+  font-weight: 700;
+}
+
+.section-title {
+  margin: 30rpx 0 16rpx;
+  font-size: 32rpx;
+  font-weight: 700;
+}
+
+.item-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24rpx;
+  margin-bottom: 16rpx;
+  padding: 22rpx;
+}
+
+.dish-name {
+  font-weight: 700;
+}
+
+.dish-price {
+  margin-top: 8rpx;
+  color: #7b8794;
+  font-size: 24rpx;
+}
+
+.subtotal {
+  flex: none;
+  color: #d9480f;
+  font-weight: 700;
+}
+
+.cancel-button {
+  margin-top: 32rpx;
+  color: #ffffff;
+  background: #d9480f;
+}

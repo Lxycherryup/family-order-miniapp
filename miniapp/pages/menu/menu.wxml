@@ -1,0 +1,47 @@
+<view class="menu-page">
+  <view class="top-actions">
+    <view class="page-title">今日菜单</view>
+    <button size="mini" bindtap="goOrders">我的订单</button>
+  </view>
+
+  <view class="menu-body">
+    <scroll-view class="category-list" scroll-y>
+      <view
+        wx:for="{{categories}}"
+        wx:key="id"
+        class="category-item {{activeCategoryID === item.id ? 'active' : ''}}"
+        data-id="{{item.id}}"
+        bindtap="switchCategory"
+      >
+        {{item.name}}
+      </view>
+    </scroll-view>
+
+    <scroll-view class="dish-list" scroll-y>
+      <view wx:if="{{!loading && dishes.length === 0}}" class="empty">暂无上架菜品</view>
+      <view wx:for="{{dishes}}" wx:key="id" class="dish-card card">
+        <image wx:if="{{item.image_url}}" class="dish-image" mode="aspectFill" src="{{item.image_url}}" />
+        <view wx:else class="dish-image placeholder">无图</view>
+        <view class="dish-info">
+          <view class="dish-name">{{item.name}}</view>
+          <view class="dish-desc">{{item.description || '暂无描述'}}</view>
+          <view class="dish-footer">
+            <view>
+              <text class="price">¥{{item.price}}</text>
+              <text class="unit"> / {{item.unit}}</text>
+            </view>
+            <button size="mini" class="add-button" data-index="{{index}}" bindtap="addToCart">加入</button>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="cart-bar">
+    <view>
+      <view class="cart-count">已选 {{cartCount}} 份</view>
+      <view class="cart-amount">¥{{cartAmount}}</view>
+    </view>
+    <button class="primary-button cart-button" disabled="{{cartCount === 0}}" bindtap="goCart">去下单</button>
+  </view>
+</view>

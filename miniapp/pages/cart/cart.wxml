@@ -1,0 +1,44 @@
+<view class="page cart-page">
+  <view wx:if="{{items.length === 0}}" class="empty card">
+    <view>购物车还是空的</view>
+    <button class="primary-button" bindtap="goMenu">返回点餐</button>
+  </view>
+
+  <view wx:else>
+    <view class="cart-list">
+      <view wx:for="{{items}}" wx:key="dish_id" class="cart-item card">
+        <image wx:if="{{item.image_url}}" class="item-image" mode="aspectFill" src="{{item.image_url}}" />
+        <view wx:else class="item-image placeholder">无图</view>
+        <view class="item-info">
+          <view class="item-name">{{item.name}}</view>
+          <view class="item-price">¥{{item.price}}</view>
+        </view>
+        <view class="quantity">
+          <button size="mini" data-id="{{item.dish_id}}" bindtap="decrease">-</button>
+          <text>{{item.quantity}}</text>
+          <button size="mini" data-id="{{item.dish_id}}" bindtap="increase">+</button>
+        </view>
+      </view>
+    </view>
+
+    <view class="remark card">
+      <view class="section-title">备注</view>
+      <textarea
+        value="{{remark}}"
+        maxlength="500"
+        placeholder="例如少油、少辣、不要香菜"
+        bindinput="onRemarkInput"
+      />
+    </view>
+
+    <view class="submit-bar">
+      <view>
+        <view class="summary-count">共 {{count}} 份</view>
+        <view class="summary-amount">¥{{amount}}</view>
+      </view>
+      <button class="primary-button submit-button" loading="{{submitting}}" bindtap="submitOrder">
+        提交订单
+      </button>
+    </view>
+  </view>
+</view>

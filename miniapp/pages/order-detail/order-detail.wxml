@@ -1,0 +1,40 @@
+<view class="page detail-page">
+  <view wx:if="{{!order && !loading}}" class="empty card">订单不存在</view>
+  <view wx:if="{{order}}">
+    <view class="summary card">
+      <view class="summary-row">
+        <text>订单号</text>
+        <text>{{order.order_no}}</text>
+      </view>
+      <view class="summary-row">
+        <text>状态</text>
+        <text class="status">{{order.status_text}}</text>
+      </view>
+      <view class="summary-row">
+        <text>金额</text>
+        <text class="amount">¥{{order.amount_text}}</text>
+      </view>
+      <view class="summary-row">
+        <text>创建时间</text>
+        <text>{{order.created_at}}</text>
+      </view>
+      <view class="summary-row">
+        <text>备注</text>
+        <text>{{order.remark || '无'}}</text>
+      </view>
+    </view>
+
+    <view class="section-title">菜品明细</view>
+    <view wx:for="{{order.items}}" wx:key="id" class="item-card card">
+      <view>
+        <view class="dish-name">{{item.dish_name}}</view>
+        <view class="dish-price">¥{{item.unit_price_text}} × {{item.quantity}}</view>
+      </view>
+      <view class="subtotal">¥{{item.subtotal_text}}</view>
+    </view>
+
+    <button wx:if="{{order.status === 1}}" class="cancel-button" bindtap="cancelOrder">
+      取消订单
+    </button>
+  </view>
+</view>
