@@ -30,7 +30,7 @@ type CategoryInput struct {
 
 // ListAdminCategories 查询管理端分类列表。
 func ListAdminCategories(ctx context.Context) ([]Category, error) {
-	var list []Category
+	list := make([]Category, 0)
 	err := g.DB().Model("menu_categories").Ctx(ctx).
 		Fields("id,name,sort,status,created_at,updated_at").
 		Order("sort ASC,id ASC").
@@ -43,7 +43,7 @@ func ListAdminCategories(ctx context.Context) ([]Category, error) {
 
 // ListEnabledCategories 查询启用分类列表。
 func ListEnabledCategories(ctx context.Context) ([]Category, error) {
-	var list []Category
+	list := make([]Category, 0)
 	err := g.DB().Model("menu_categories").Ctx(ctx).
 		Fields("id,name,sort,status,created_at,updated_at").
 		Where("status", consts.StatusEnabled).

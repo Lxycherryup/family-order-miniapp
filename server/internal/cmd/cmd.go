@@ -57,6 +57,11 @@ var Main = gcmd.Command{
 				adminGroup.GET("/orders", order.List)
 				adminGroup.GET("/orders/{id}", order.Detail)
 				adminGroup.PUT("/orders/{id}/status", order.UpdateStatus)
+
+				user := admincontroller.NewUser()
+				adminGroup.GET("/users", user.List)
+				adminGroup.PUT("/users/{id}/whitelist", user.UpdateWhitelist)
+				adminGroup.PUT("/users/{id}/status", user.UpdateStatus)
 			})
 
 			miniappAuth := miniappcontroller.NewAuth()

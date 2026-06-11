@@ -60,7 +60,7 @@ func ListAdminDishes(ctx context.Context, categoryID int64, status int) ([]Dish,
 		model = model.Where("status", status)
 	}
 
-	var list []Dish
+	list := make([]Dish, 0)
 	if err := model.Order("sort ASC,id ASC").Scan(&list); err != nil {
 		return nil, fmt.Errorf("查询菜品列表失败: %w", err)
 	}
@@ -76,7 +76,7 @@ func ListOnlineDishes(ctx context.Context, categoryID int64) ([]Dish, error) {
 		model = model.Where("category_id", categoryID)
 	}
 
-	var list []Dish
+	list := make([]Dish, 0)
 	if err := model.Order("sort ASC,id ASC").Scan(&list); err != nil {
 		return nil, fmt.Errorf("查询上架菜品列表失败: %w", err)
 	}

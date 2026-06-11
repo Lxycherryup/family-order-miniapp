@@ -1,17 +1,6 @@
 import { defineStore } from 'pinia'
 
-import { request } from '../api/request'
-
-interface LoginResult {
-  token: string
-  admin_id: number
-  username: string
-}
-
-interface LoginParams {
-  username: string
-  password: string
-}
+import { login, type LoginParams } from '../api/auth'
 
 // useAuthStore 管理管理员登录状态。
 export const useAuthStore = defineStore('auth', {
@@ -27,7 +16,7 @@ export const useAuthStore = defineStore('auth', {
   actions: {
     // login 调用管理员登录接口并保存登录态。
     async login(params: LoginParams) {
-      const result = await request.post<unknown, LoginResult>('/auth/login', params)
+      const result = await login(params)
       this.token = result.token
       this.adminId = result.admin_id
       this.username = result.username

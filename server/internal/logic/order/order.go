@@ -163,7 +163,7 @@ func ListUserOrders(ctx context.Context, userID int64) ([]Order, error) {
 		return nil, fmt.Errorf("用户ID不能为空")
 	}
 
-	var list []Order
+	list := make([]Order, 0)
 	err := g.DB().Model("orders").Ctx(ctx).
 		Fields("id,order_no,user_id,total_amount,status,remark,created_at,updated_at").
 		Where("user_id", userID).
@@ -190,7 +190,7 @@ func ListAdminOrders(ctx context.Context, in AdminOrderListInput) ([]Order, erro
 		model = model.Where("status", in.Status)
 	}
 
-	var list []Order
+	list := make([]Order, 0)
 	err := model.Page(in.Page, in.PageSize).
 		Order("created_at DESC,id DESC").
 		Scan(&list)
@@ -289,7 +289,7 @@ func getOrder(ctx context.Context, id int64, userID int64) (*Order, error) {
 
 // listOrderItems 查询订单明细。
 func listOrderItems(ctx context.Context, orderID int64) ([]OrderItem, error) {
-	var items []OrderItem
+	items := make([]OrderItem, 0)
 	err := g.DB().Model("order_items").Ctx(ctx).
 		Fields("id,order_id,dish_id,dish_name,dish_image_url,unit_price,quantity,subtotal_amount,created_at").
 		Where("order_id", orderID).

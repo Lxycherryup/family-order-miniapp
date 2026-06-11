@@ -1,10 +1,18 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 
 import { useAuthStore } from '../stores/auth'
 
 const router = useRouter()
 const authStore = useAuthStore()
+
+const menus = computed(() => [
+  { path: '/categories', label: '分类管理' },
+  { path: '/dishes', label: '菜品管理' },
+  { path: '/orders', label: '订单管理' },
+  { path: '/users', label: '白名单' },
+])
 
 // handleLogout 退出当前管理员登录。
 async function handleLogout() {
@@ -24,19 +32,22 @@ async function handleLogout() {
         </div>
       </div>
       <nav class="nav-list">
-        <a class="nav-item active">工作台</a>
-        <a class="nav-item">分类管理</a>
-        <a class="nav-item">菜品管理</a>
-        <a class="nav-item">订单管理</a>
-        <a class="nav-item">白名单</a>
+        <router-link
+          v-for="menu in menus"
+          :key="menu.path"
+          class="nav-item"
+          :to="menu.path"
+        >
+          {{ menu.label }}
+        </router-link>
       </nav>
     </aside>
 
     <section class="workspace">
       <header class="topbar">
         <div>
-          <h1>工作台</h1>
-          <p>当前后端接口和登录态已经接入，下一步实现业务管理页面。</p>
+          <h1>家庭点餐管理后台</h1>
+          <p>维护菜单、处理订单并管理家人点餐权限。</p>
         </div>
         <div class="admin-actions">
           <span>{{ authStore.username }}</span>
@@ -44,20 +55,7 @@ async function handleLogout() {
         </div>
       </header>
 
-      <section class="quick-grid">
-        <article class="quick-card">
-          <strong>分类管理</strong>
-          <p>维护菜品分类、排序和启用状态。</p>
-        </article>
-        <article class="quick-card">
-          <strong>菜品管理</strong>
-          <p>维护菜品图片、价格、单位和上下架状态。</p>
-        </article>
-        <article class="quick-card">
-          <strong>订单管理</strong>
-          <p>查看订单详情并处理制作状态。</p>
-        </article>
-      </section>
+      <router-view />
     </section>
   </main>
 </template>
