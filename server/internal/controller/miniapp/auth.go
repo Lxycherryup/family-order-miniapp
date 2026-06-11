@@ -27,10 +27,7 @@ func (c *Auth) Login(r *ghttp.Request) {
 		return
 	}
 
-	client := &authlogic.HTTPWechatClient{
-		AppID:     g.Cfg().MustGet(r.Context(), "wechat.appId").String(),
-		AppSecret: g.Cfg().MustGet(r.Context(), "wechat.appSecret").String(),
-	}
+	client := newWechatClient(r)
 	out, err := userlogic.LoginByWechatCode(r.Context(), userlogic.WechatLoginInput{
 		Code:      req.Code,
 		Nickname:  req.Nickname,
@@ -46,4 +43,17 @@ func (c *Auth) Login(r *ghttp.Request) {
 		Token:       out.Token,
 		IsWhitelist: out.IsWhitelist,
 	})
+}
+
+// newWechatClient 根据配置创建微信登录客户端。
+func newWechatClient(r *ghttp.Request) authlogic.WechatClient {
+	if g.Cfg().MustGet(r.Context(), "wechat.mockEnabled", false).Bool() {
+		return authlogic.NewMockWechatClient(
+			g.Cfg().MustGet(r.Context(), "wechat.mockOpenID", "dev-family-user").String(),
+		)
+	}
+	return &authlogic.HTTPWechatClient{
+		AppID:     g.Cfg().MustGet(r.Context(), "wechat.appId").String(),
+		AppSecret: g.Cfg().MustGet(r.Context(), "wechat.appSecret").String(),
+	}
 }

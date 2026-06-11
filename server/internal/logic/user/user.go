@@ -2,6 +2,8 @@ package user
 
 import (
 	"context"
+	"database/sql"
+	"errors"
 	"fmt"
 	"time"
 
@@ -98,7 +100,9 @@ func findOrCreateWechatUser(ctx context.Context, openID string, nickname string,
 
 	var u miniappUser
 	if err := g.DB().Model("users").Ctx(ctx).Where("openid", openID).Scan(&u); err != nil {
-		return nil, fmt.Errorf("查询微信用户失败: %w", err)
+		if !errors.Is(err, sql.ErrNoRows) {
+			return nil, fmt.Errorf("查询微信用户失败: %w", err)
+		}
 	}
 
 	now := time.Now()

@@ -32,6 +32,27 @@ type HTTPWechatClient struct {
 	AppSecret string
 }
 
+// MockWechatClient 本地开发使用的微信客户端。
+type MockWechatClient struct {
+	OpenID string
+}
+
+// NewMockWechatClient 创建本地开发微信 mock 客户端。
+func NewMockWechatClient(openID string) *MockWechatClient {
+	if openID == "" {
+		openID = "dev-family-user"
+	}
+	return &MockWechatClient{OpenID: openID}
+}
+
+// Code2Session 返回本地开发固定 OpenID。
+func (c *MockWechatClient) Code2Session(ctx context.Context, code string) (*WechatSession, error) {
+	return &WechatSession{
+		OpenID:     c.OpenID,
+		SessionKey: "mock-session-key",
+	}, nil
+}
+
 // Code2Session 使用微信 code 换取 OpenID。
 func (c *HTTPWechatClient) Code2Session(ctx context.Context, code string) (*WechatSession, error) {
 	if c.AppID == "" || c.AppSecret == "" {

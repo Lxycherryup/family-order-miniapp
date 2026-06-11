@@ -16,4 +16,5 @@ server/log/
 admin-web/node_modules/
 admin-web/dist/
 miniapp/miniprogram_npm/
+miniapp/project.private.config.json
 deploy/**/*.local.yaml
